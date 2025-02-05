@@ -1,3 +1,4 @@
+import 'package:bottom_nav/controllers/text_controller.dart';
 import 'package:get/get.dart';
 import 'package:bottom_nav/services/api_services.dart'; //dapat service ambil data API
 import 'package:intl/intl.dart'; //dapat tanggal
@@ -5,7 +6,8 @@ import 'package:bottom_nav/models/ListData.dart'; //dapat model listdata
 import 'dart:convert';
 
 class BrowseController extends GetxController {
-  final title = 'Browser'.obs;
+  late TextController txtController;// untuk buat variabel text controller yang diinisialisasi
+  //dikemudian waktu. seoalnya defaultnya yang browse controller dulu sih, jadi si text controllernya bakal dibuat variabelnya kalau udah dibuat inisialisasinya
 
   //variabel API
   var apiService = ApiService();//list untuk dapat data List
@@ -17,8 +19,19 @@ class BrowseController extends GetxController {
   @override
   void onInit() async{
     super.onInit();
+    onInitialController();
     onGetAllDocumentData();
   }
+
+  //fungsi untuk memeriksa apakah controller dengan tipe text controller sudah terdaftar
+  //di dependency manager Get atau belom
+  void onInitialController(){
+    txtController = Get.isRegistered<TextController>() ?
+      Get.find<TextController>() : Get.put(TextController());
+    //if TextController sudah registered maka pakai Get.Find untuk dapat text controllernya
+    //kalau belum terdaftar maka akan membuat instancenya
+  }
+
   //onGEtAllDocumentData()
   onGetAllDocumentData() async {
     print('getting all data');

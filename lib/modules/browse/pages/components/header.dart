@@ -7,7 +7,8 @@ import 'package:bottom_nav/modules/browse/controller/browse_controller.dart';
 //getView <BrowseController> itu pake punya bindingController
 class Header extends GetView<BrowseController> {
  // BrowseController controller = Get.put(BrowseController());
-  TextController textController = Get.put(TextController());
+  //TextController textController = Get.put(TextController());
+
   Header({Key? key}) : super(key: key);
 
   @override
@@ -78,7 +79,7 @@ class Header extends GetView<BrowseController> {
                 // Use GetX to make the TextField reactive
                 Expanded(
                   child: TextField(
-                    controller: textController.textEditingController.value,
+                    controller: controller.txtController.textEditingController.value,
                     decoration: InputDecoration(
                       labelText: 'Enter text',
                     ),

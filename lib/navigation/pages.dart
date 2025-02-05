@@ -6,6 +6,7 @@ import 'package:bottom_nav/modules/browse/binding/browse_binding.dart';
 import 'package:bottom_nav/modules/browse/pages/browse_page.dart';
 import 'package:bottom_nav/modules/settings/binding/settings_binding.dart';
 import 'package:bottom_nav/modules/settings/pages/settings_page.dart';
+import 'package:bottom_nav/controllers/text_controller_binding.dart';
 import 'routes.dart';
 
 class AppPages{
@@ -21,7 +22,7 @@ class AppPages{
     ),
     GetPage(name: Routes.another, page: ()=> AnotherPage()
     ),
-    GetPage(name: Routes.browse, page: ()=> BrowsePage(), binding: BrowseBinding()
+    GetPage(name: Routes.browse, page: ()=> BrowsePage(), bindings: [BrowseBinding(), TextControllerBinding()]
     ),
     GetPage(name: Routes.settings, page: ()=> SettingsPage(), binding: SettingsBinding()
     ),

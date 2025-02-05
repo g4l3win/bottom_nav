@@ -21,7 +21,7 @@ class HomeController extends GetxController {
      Get.toNamed(dashboardPages[index], id: index);
 
   }
-  // Menampilkan halaman sesuai index
+  // Menampilkan halaman sesuai index. yang dikembalikan widget halaman sesuai index yang dipilih
   Widget homePage(int? index) {
     if (index == 1) {
       return SettingsPage();
