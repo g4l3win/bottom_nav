@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:bottom_nav/modules/settings/controller/settings_controller.dart';
 
 class SettingsPage extends StatelessWidget {
+  final SettingsController controller = Get.put(SettingsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

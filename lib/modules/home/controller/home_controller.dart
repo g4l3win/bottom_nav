@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:bottom_nav/navigation/routes.dart';
 import 'package:bottom_nav/modules/browse/binding/browse_binding.dart';
 import 'package:bottom_nav/modules/browse/pages/browse_page.dart';
 import 'package:bottom_nav/modules/settings/pages/settings_page.dart';
@@ -9,28 +11,61 @@ class HomeController extends GetxController {
 
   var currentIndex = 0.obs;
 
-  final pages = <String>['/browse', '/settings'];
+  List<String> dashboardPages = [Routes.browse, Routes.settings];
 
+  //buat ganti halaman bottom navigation
   void changePage(int index) {
+    print('tapped index ${index.toString()}');
     currentIndex.value = index;
-    Get.toNamed(pages[index], id: 1);
+    homePage(index);
+     Get.toNamed(dashboardPages[index], id: index);
+
   }
-
-  Route? onGenerateRoute(RouteSettings settings) {
-    if (settings.name == '/browse')
-      return GetPageRoute(
-        settings: settings,
-        page: () => BrowsePage(),
-        binding: BrowseBinding(),
-      );
-    if (settings.name == '/settings')
-      return GetPageRoute(
-        settings: settings,
-        page: () => SettingsPage(),
-        binding: SettingsBinding(),
-      );
-
-
-    return null;
+  // Menampilkan halaman sesuai index
+  Widget homePage(int? index) {
+    if (index == 1) {
+      return SettingsPage();
+    }
+    return BrowsePage(); // Default adalah index 0 (BrowsePage)
   }
 }
+  // Container homePage(int? index) {
+  //   var home = Container(
+  //     decoration: const BoxDecoration(
+  //       color: Colors.blue
+  //     ),
+  //     child: Center(child: Text('this is ${dashboardPages.first}')),
+  //   );
+  //
+  //   if(index != null && index != 0){
+  //     home = Container(
+  //       decoration: const BoxDecoration(
+  //           color: Colors.green
+  //       ),
+  //       child: Center(child: Text('this is ${dashboardPages[index]}')),
+  //     );
+  //   }
+  //   return home;
+  // }
+
+
+  // BELAJAR DARI KESALAHAN
+// Route? onGenerateRoute(RouteSettings settings) {
+  //   if (settings.name == '/browse')
+  //     return GetPageRoute(
+  //       settings: settings,
+  //       page: () => BrowsePage(),
+  //       binding: BrowseBinding(),
+  //       bindings: [BrowseBinding(), BrowseBinding()]
+  //     );
+  //   if (settings.name == '/settings')
+  //     return GetPageRoute(
+  //       settings: settings,
+  //       page: () => SettingsPage(),
+  //       binding: SettingsBinding(),
+  //     );
+  //   return null;
+  // }
+
+
+

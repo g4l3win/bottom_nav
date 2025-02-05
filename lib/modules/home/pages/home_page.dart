@@ -6,11 +6,7 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Navigator(
-        key: Get.nestedKey(1),
-        initialRoute: '/browse',
-        onGenerateRoute: controller.onGenerateRoute,
-      ),
+      body: Obx(() => controller.homePage(controller.currentIndex.value)),
       bottomNavigationBar: Obx(
             () => BottomNavigationBar(
           items: const <BottomNavigationBarItem>[

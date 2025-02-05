@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:bottom_nav/modules/util/emoticon_face.dart';
 import 'package:bottom_nav/modules/util/ListDataTile.dart';
 import 'package:bottom_nav/controllers/text_controller.dart';
-class BrowsePage extends StatelessWidget {
+class BrowsePage extends GetView<BrowseController> {
 
   @override
   Widget build(BuildContext context) {
