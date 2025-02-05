@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bottom_nav/modules/settings/controller/settings_controller.dart';
+import 'package:bottom_nav/navigation/routes.dart';
 
 class SettingsPage extends StatelessWidget {
   final SettingsController controller = Get.put(SettingsController());
@@ -17,7 +18,7 @@ class SettingsPage extends StatelessWidget {
             ),
             ElevatedButton(
               child: Text('Another Page'),
-              onPressed: () => Get.toNamed('/another'),
+              onPressed: () => Get.toNamed(Routes.another),
             ),
           ],
         ),
