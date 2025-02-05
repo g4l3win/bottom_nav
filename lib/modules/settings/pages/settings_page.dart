@@ -9,19 +9,28 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Settings')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              child: Text(Get.find<SettingsController>().title.value),
-            ),
-            ElevatedButton(
-              child: Text('Another Page'),
-              onPressed: () => Get.toNamed(Routes.another),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: //Center(
+          //child:
+        Padding(padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                child: Image.asset('images/settings.jpg')
+              ),
+              Container(
+                child: Text(Get.find<SettingsController>().title.value),
+              ),
+              // ElevatedButton(
+              //   child: Text('Another Page'),
+              //   onPressed: () => Get.toNamed(Routes.another),
+              // ),
+            ],
+          ),
         ),
+
+        //),
       ),
     );
   }
