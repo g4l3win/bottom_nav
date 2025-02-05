@@ -1,3 +1,4 @@
+import 'package:bottom_nav/controllers/date_controller.dart';
 import 'package:bottom_nav/controllers/text_controller.dart';
 import 'package:get/get.dart';
 import 'package:bottom_nav/services/api_services.dart'; //dapat service ambil data API
@@ -6,9 +7,11 @@ import 'package:bottom_nav/models/ListData.dart'; //dapat model listdata
 import 'dart:convert';
 
 class BrowseController extends GetxController {
+  //variabel buat handle multiple bindings yang text controller
   late TextController txtController;// untuk buat variabel text controller yang diinisialisasi
   //dikemudian waktu. seoalnya defaultnya yang browse controller dulu sih, jadi si text controllernya bakal dibuat variabelnya kalau udah dibuat inisialisasinya
-
+  //variabel buat handle multiple bindings yang text controller
+  late DateController dateController;
   //variabel API
   var apiService = ApiService();//list untuk dapat data List
   var documentData = ''.obs; // Gunakan obs agar bisa dipantau di UI
@@ -26,8 +29,8 @@ class BrowseController extends GetxController {
   //fungsi untuk memeriksa apakah controller dengan tipe text controller sudah terdaftar
   //di dependency manager Get atau belom
   void onInitialController(){
-    txtController = Get.isRegistered<TextController>() ?
-      Get.find<TextController>() : Get.put(TextController());
+    txtController = Get.isRegistered<TextController>() ? Get.find<TextController>() : Get.put(TextController());
+    dateController = Get.isRegistered<DateController>() ? Get.find<DateController>() : Get.put(DateController());
     //if TextController sudah registered maka pakai Get.Find untuk dapat text controllernya
     //kalau belum terdaftar maka akan membuat instancenya
   }
@@ -62,10 +65,6 @@ class BrowseController extends GetxController {
 
   }
 
-// Fungsi untuk mendapatkan tanggal yang diformat
-  String getFormattedDate() {
-    final now = DateTime.now();
-    return DateFormat('d MMMM yyyy').format(now);
-  }
+
 
 }

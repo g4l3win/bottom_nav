@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bottom_nav/modules/util/emoticon_face.dart';
-import 'package:bottom_nav/controllers/text_controller.dart';
 import 'package:bottom_nav/modules/browse/controller/browse_controller.dart';
 
 //getView <BrowseController> itu pake punya bindingController
@@ -36,7 +35,7 @@ class Header extends GetView<BrowseController> {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      controller.getFormattedDate(),
+                      controller.dateController.getFormattedDate(),
                       style: TextStyle(
                         color: Colors.blue[200],
                         fontSize: 16,
