@@ -61,7 +61,7 @@ class SettingsPage extends GetView<SettingsController> {
                     Button(
                         icon: Icons.question_mark,
                         label: 'FAQ',
-                        rute: Routes.account),
+                        rute: Routes.FAQ),
 
                     SizedBox(
                       height: 40,
