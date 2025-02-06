@@ -13,17 +13,17 @@ class Header extends GetView<BrowseController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+      padding: const EdgeInsets.symmetric(horizontal: 18.0), //dikasih const soalnya padding enggak perlu berubah berubah
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween, // ini buat ngatur jarak antar komponen row sama gedenya
             children: [
-              // Kolom teks di kiri dengan border
+              // Kolom teks di kiri
               Container(
-                padding: EdgeInsets.all(8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                padding: EdgeInsets.all(8), //kasih padding
+                child: Column( //komponen tulisan menyusun kebawah
+                  crossAxisAlignment: CrossAxisAlignment.start,//biar komponennya ada di awal
                   children: [
                     Text(
                       'Halaman: Browse',
@@ -46,16 +46,15 @@ class Header extends GetView<BrowseController> {
               ),
               // Ikon di kanan dengan border
               Container(
-                decoration: BoxDecoration(
+                padding: EdgeInsets.all(12), //padding untuk container icon
+                decoration: BoxDecoration(//dekorasi kontainer
                   color: Colors.blue[600],
                   border: Border.all(
                     color: Colors.white, // Warna border
                     width: 2, // Ketebalan border
                   ),
-                  borderRadius: BorderRadius.circular(
-                      12), // Sudut melengkung
+                  borderRadius: BorderRadius.circular(12), // Sudut melengkung
                 ),
-                padding: EdgeInsets.all(12),
                 child: Icon(
                   Icons.notifications,
                   color: Colors.white,
@@ -78,7 +77,7 @@ class Header extends GetView<BrowseController> {
                 // Use GetX to make the TextField reactive
                 Expanded(
                   child: TextField(
-                    controller: controller.txtController.textEditingController.value,
+                    controller: controller.txtController.textEditingController.value, //ini memanggil controllernya text melalui binding
                     decoration: InputDecoration(
                       labelText: 'Enter text',
                     ),

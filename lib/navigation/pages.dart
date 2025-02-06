@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:bottom_nav/modules/home/pages/home_page.dart';
 import 'package:bottom_nav/modules/home/binding/home_binding.dart';
-import 'package:bottom_nav/modules/another/another_page.dart';
+import 'package:bottom_nav/modules/account/pages/account_page.dart';
 import 'package:bottom_nav/modules/browse/binding/browse_binding.dart';
 import 'package:bottom_nav/modules/browse/pages/browse_page.dart';
 import 'package:bottom_nav/modules/settings/binding/settings_binding.dart';
@@ -21,7 +21,7 @@ class AppPages{
   static final routes = [
     GetPage(name: Routes.home, page: ()=> HomePage(), binding: HomeBinding()
     ),
-    GetPage(name: Routes.another, page: ()=> AnotherPage()
+    GetPage(name: Routes.account, page: ()=> AccountPage()
     ),
     GetPage(name: Routes.browse, page: ()=> BrowsePage(), bindings: [BrowseBinding(), TextControllerBinding(), DateBinding()]
     ),

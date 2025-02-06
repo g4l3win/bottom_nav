@@ -9,12 +9,11 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child:
-    Container(
-        padding: EdgeInsets.all(18),
-        color: Colors.blue,
-        child: Column(
-            children: [
+    return Expanded(
+        child: Container(
+            padding: EdgeInsets.all(18),
+            color: Colors.blue,
+            child: Column(children: [
               // Exercise row
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,7 +31,7 @@ class Body extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Expanded(
+              Expanded(//pakai list view builder makanya pakai expanded karena enggak tahu panjangnya akan berakhir dimana
                 //JANGAN LUPA KALAU
                 child: Obx(() => ListView.builder(
                     itemCount: controller.listDataAPI.length,
@@ -43,13 +42,8 @@ class Body extends StatelessWidget {
                         materialname: item.materialname ?? "-",
                         shiftcode: item.shiftcode ?? "-",
                       );
-                    }
-                )),
+                    })),
               ),
-            ]
-        )
-    )
-    );
+            ])));
   }
 }
-

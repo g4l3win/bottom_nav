@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:bottom_nav/modules/home/pages/home_page.dart';
-import 'modules/home/binding/home_binding.dart';
-import 'modules/another/another_page.dart';
+
 import 'navigation/pages.dart';
 
 void main() {
