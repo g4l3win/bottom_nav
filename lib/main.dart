@@ -10,20 +10,8 @@ void main() {
     title: 'state management',
     //theme data
     theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),),
+    defaultTransition: Transition.fade,//atur transisi default
 
-    // initialRoute: '/home',
-    // defaultTransition: Transition.fade, //keren bisa transisi. atur default
-    // getPages: [
-    //   GetPage(
-    //     name: '/home',
-    //     page: () => HomePage(),
-    //     binding: HomeBinding(),
-    //   ),
-    //   GetPage(
-    //     name: '/another',
-    //     page: () => AnotherPage(),
-    //   ),
-    // ],
 
     initialRoute: AppPages.initial, //ambil dari route '/home'
     getPages: AppPages.routes,

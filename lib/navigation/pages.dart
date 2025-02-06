@@ -19,7 +19,7 @@ class AppPages{
 
 
   static final routes = [
-    GetPage(name: Routes.home, page: ()=> HomePage(), binding: HomeBinding()
+    GetPage(name: Routes.home, page: ()=> HomePage(), bindings: [HomeBinding(), SettingsBinding()] //settings lokasinya ada di dalam home juga jadi harus di inisialisasi juga di halaman pages
     ),
     GetPage(name: Routes.account, page: ()=> AccountPage()
     ),

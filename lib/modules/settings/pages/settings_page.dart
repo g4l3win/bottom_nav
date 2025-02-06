@@ -8,7 +8,7 @@ import 'package:bottom_nav/modules/settings/pages/component/icon_setting.dart';
 
 
 class SettingsPage extends GetView<SettingsController> {
-  final SettingsController controller = Get.put(SettingsController());
+  //final SettingsController controller = Get.put(SettingsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
