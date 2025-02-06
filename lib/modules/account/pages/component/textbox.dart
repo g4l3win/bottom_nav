@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:bottom_nav/modules/account/controller/account_controller.dart';
+import 'package:get/get.dart';
 
-class Textbox extends StatelessWidget {
+class Textbox extends GetView<AccountController> {
   final String label;
 
   const Textbox({Key? key,
@@ -14,7 +16,9 @@ class Textbox extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: Colors.grey)
       ),
-      child: TextField(decoration: InputDecoration(
+      child: TextField(
+        //controller: controller.txtController.textEditingController.value,
+        decoration: InputDecoration(
         labelText: label,
       ),),
     );

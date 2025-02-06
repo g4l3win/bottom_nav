@@ -2,12 +2,14 @@ import 'package:get/get.dart';
 import 'package:bottom_nav/modules/home/pages/home_page.dart';
 import 'package:bottom_nav/modules/home/binding/home_binding.dart';
 import 'package:bottom_nav/modules/account/pages/account_page.dart';
+import 'package:bottom_nav/modules/account/binding/account_binding.dart';
 import 'package:bottom_nav/modules/browse/binding/browse_binding.dart';
 import 'package:bottom_nav/modules/browse/pages/browse_page.dart';
 import 'package:bottom_nav/modules/settings/binding/settings_binding.dart';
 import 'package:bottom_nav/modules/settings/pages/settings_page.dart';
 import 'package:bottom_nav/controllers/text_controller_binding.dart';
 import 'package:bottom_nav/controllers/date_binding.dart';
+
 import 'routes.dart';
 
 class AppPages{
@@ -21,7 +23,7 @@ class AppPages{
   static final routes = [
     GetPage(name: Routes.home, page: ()=> HomePage(), bindings: [HomeBinding(), SettingsBinding()] //settings lokasinya ada di dalam home juga jadi harus di inisialisasi juga di halaman pages
     ),
-    GetPage(name: Routes.account, page: ()=> AccountPage()
+    GetPage(name: Routes.account, page: ()=> AccountPage(), binding: AccountBinding()
     ),
     GetPage(name: Routes.browse, page: ()=> BrowsePage(), bindings: [BrowseBinding(), TextControllerBinding(), DateBinding()]
     ),
