@@ -6,6 +6,7 @@ import 'package:bottom_nav/navigation/routes.dart';
 import 'package:bottom_nav/modules/util/button.dart';
 import 'package:bottom_nav/modules/settings/pages/component/icon_setting.dart';
 
+
 class SettingsPage extends GetView<SettingsController> {
   final SettingsController controller = Get.put(SettingsController());
   @override

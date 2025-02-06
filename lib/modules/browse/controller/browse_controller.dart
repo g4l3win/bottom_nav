@@ -2,7 +2,6 @@ import 'package:bottom_nav/controllers/date_controller.dart';
 import 'package:bottom_nav/controllers/text_controller.dart';
 import 'package:get/get.dart';
 import 'package:bottom_nav/services/api_services.dart'; //dapat service ambil data API
-import 'package:intl/intl.dart'; //dapat tanggal
 import 'package:bottom_nav/models/ListData.dart'; //dapat model listdata
 import 'dart:convert';
 
@@ -64,7 +63,4 @@ class BrowseController extends GetxController {
     print('length ${listDataAPI.length.toString()}');
 
   }
-
-
-
 }
