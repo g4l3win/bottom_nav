@@ -9,6 +9,7 @@ import 'package:bottom_nav/modules/settings/binding/settings_binding.dart';
 import 'package:bottom_nav/modules/settings/pages/settings_page.dart';
 import 'package:bottom_nav/controllers/text_controller_binding.dart';
 import 'package:bottom_nav/controllers/date_binding.dart';
+import 'package:bottom_nav/modules/FAQ/pages/FAQ_page.dart';
 
 import 'routes.dart';
 
@@ -28,6 +29,9 @@ class AppPages{
     GetPage(name: Routes.browse, page: ()=> BrowsePage(), bindings: [BrowseBinding(), TextControllerBinding(), DateBinding()]
     ),
     GetPage(name: Routes.settings, page: ()=> SettingsPage(), binding: SettingsBinding()
+    ),
+    GetPage(
+      name: Routes.FAQ, page: () => FAQPage(), 
     ),
 
   ];
