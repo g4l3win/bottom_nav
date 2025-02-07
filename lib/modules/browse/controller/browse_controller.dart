@@ -39,7 +39,7 @@ class BrowseController extends GetxController {
     print('getting all data');
     try{
       isLoading.value=true;
-      String url = "https://portal.mayora.co.id/MOA2/WMS/GetProductionOrder?username=MG109519";
+      String url = "";
       String result = await apiService
           .onBasicGetSource(url: url)
           .timeout(const Duration(seconds: 20), onTimeout: () => "Time Out");
