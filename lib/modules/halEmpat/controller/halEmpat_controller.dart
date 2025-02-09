@@ -47,4 +47,28 @@ class HalempatController extends GetxController {
     }
     print('length ${ProductData.length.toString()}');
   }
+
+  //fungsi add item to cart
+  void addItemToCart(int index) {
+    //variabel terima data produk berdasarkan kelas Productmodel
+    Productmodel product = ProductData[index];
+    _cartItems.add(product);
+    print("item sudah masuk ke cart : ${product.nama}");
+  }
+
+  //fungsi remove item dari cart
+  void removeItemFromCart(int index) {
+    _cartItems.removeAt(index); //ini buat hapus item berdasarkan index
+    print("item removed");
+  }
+
+  //fungsi calculate total belanja
+  double calculateTotal() {
+    double total = 0;
+    for (var item in _cartItems) {
+      total += item.harga ??
+          0; //kalau g null item harga akan ditambah sesuai iterasi kalau null ditambah 0
+    }
+    return total;
+  }
 }
