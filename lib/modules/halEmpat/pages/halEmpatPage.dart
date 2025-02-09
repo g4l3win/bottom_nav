@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-//import 'package:get/get.dart';
+import 'package:get/get.dart';
+import 'package:simple_app_android/models/ProductModel.dart';
+import 'package:simple_app_android/modules/browse/pages/browse_page.dart';
+import 'package:simple_app_android/modules/halEmpat/controller/halEmpat_controller.dart';
+import 'package:simple_app_android/modules/settings/pages/settings_page.dart';
 
-class Halempatpage extends StatelessWidget {
-  const Halempatpage({super.key});
-
+class Halempatpage extends GetView<HalempatController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,15 +23,24 @@ class Halempatpage extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('menuju Browse'),
               onTap: () {
                 // Lakukan sesuatu saat Item 1 ditekan
+                Get.to(
+                  BrowsePage(),
+                  transition: Transition
+                      .rightToLeft, // Bisa diganti dengan animasi lain seperti fade, downToUp, etc.
+                );
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: Text('menuju settings'),
               onTap: () {
                 // Lakukan sesuatu saat Item 2 ditekan
+                // Get.to(
+                //   SettingsPage(),
+                //   arguments: {'id': 1, 'name': 'Product 1'},
+                // );
               },
             ),
           ],
@@ -42,20 +53,64 @@ class Halempatpage extends StatelessWidget {
             Divider(
               color: Colors.grey,
               thickness: 2.0,
-            ), //kasih pemisah komponen secara visual
-
-            GridView.count(
-              shrinkWrap:
-                  true, // Agar GridView menyesuaikan dengan ukuran konten di dalamnya
-              physics:
-                  NeverScrollableScrollPhysics(), // Membuat GridView tidak scrollable karena sudah ada scroll di SingleChildScrollView
-              crossAxisCount: 2,
-              children: [
-                Icon(Icons.star),
-                Icon(Icons.favorite),
-                Image(image: AssetImage('images/image1.jpg')),
-              ],
             ),
+            //kasih pemisah komponen secara visual
+            Container(
+              height: 700,
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: Obx(() {
+                //ini obx
+                if (controller.isLoading.value) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                return GridView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: controller.ProductData.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) {
+                    final product = controller.ProductData[index];
+                    return Card(
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            product.imagepath ?? 'images/settings.jpg',
+                            height: 125,
+                          ),
+                          Text(product.nama ?? "No Name"),
+                          Text("Rp. ${product.harga ?? 0}"),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text("Add to Cart"),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              }),
+            ),
+
+            // GridView.count(
+            //   shrinkWrap:
+            //       true, // Agar GridView menyesuaikan dengan ukuran konten di dalamnya
+            //   physics:
+            //       NeverScrollableScrollPhysics(), // Membuat GridView tidak scrollable karena sudah ada scroll di SingleChildScrollView
+            //   crossAxisCount: 2,
+            //   children: [
+            //     Container(
+            //       child: Column(
+            //         children: [
+            //           Image(image: Productmodel.image)
+            //         ],
+            //       ),
+            //     )
+            //   ],
+            // ),
             Stack(
               children: [
                 Container(
