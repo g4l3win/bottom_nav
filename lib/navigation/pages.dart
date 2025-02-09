@@ -11,6 +11,7 @@ import 'package:bottom_nav/controllers/text_controller_binding.dart';
 import 'package:bottom_nav/controllers/date_binding.dart';
 import 'package:bottom_nav/modules/FAQ/pages/FAQ_page.dart';
 import 'package:simple_app_android/modules/halEmpat/pages/halEmpatPage.dart';
+import 'package:simple_app_android/modules/halEmpat/binding/halEmpat_binding.dart';
 import 'routes.dart';
 
 class AppPages {
@@ -39,6 +40,6 @@ class AppPages {
         page: () => SettingsPage(),
         binding: SettingsBinding()),
     GetPage(name: Routes.FAQ, page: () => FAQPage(), binding: FAQBinding()),
-    GetPage(name: Routes.Halempatpage, page: () => Halempatpage()),
+    GetPage(name: Routes.Halempatpage, page: () => Halempatpage(), binding: HalempatBinding()),
   ];
 }
