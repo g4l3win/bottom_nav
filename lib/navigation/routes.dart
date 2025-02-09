@@ -4,6 +4,7 @@
   static const browse = _Paths.browse;
   static const settings = _Paths.settings;
   static const FAQ = _Paths.FAQ;
+  static const Halempatpage = _Paths.halEmpatPage;
 }
 
 abstract class _Paths {
@@ -12,4 +13,5 @@ abstract class _Paths {
   static const browse = '/browse';
   static const settings = '/settings';
   static const FAQ = '/FAQ';
+  static const halEmpatPage = '/halEmpatPage'; // Perbaiki ini
 }
