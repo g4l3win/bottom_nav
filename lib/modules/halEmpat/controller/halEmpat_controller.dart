@@ -21,7 +21,6 @@ class HalempatController extends GetxController {
     try {
       isLoading.value = true;
       String result = await loadAsset('assets/product_data.json');
-      // documentData.value = result;
       onFilterData(data: result);
       isLoading.value = false;
     } catch (e) {
@@ -31,6 +30,10 @@ class HalempatController extends GetxController {
 
   //fungsi membaca file JSON dari assets pakai future dan async karena mendapatkan datanya harus menunggu
   Future<String> loadAsset(String path) async {
+    //rootBunlde adalah bagian package services.dart yang dipakai untuk akses file dalam folder assets/
+    //rootBundle bisa baca teks JSON TXT CSV
+    //memuat file konfigurasi tanpa HTTP request
+    //ambil data statis tanpa simpan ke database
     return await rootBundle.loadString(path);
   }
   void onFilterData({required String data}) {
