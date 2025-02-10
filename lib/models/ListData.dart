@@ -8,7 +8,7 @@ class ListData {
 
   ListData(
       {this.materialname, this.shiftcode});
-
+//fromJSON itu method untuk mengubah JSON menjadi objek dalam dart
   ListData.fromJson(Map<String, dynamic> json) {
 
     materialname = json['MATERIALNAME'] ?? "-";
