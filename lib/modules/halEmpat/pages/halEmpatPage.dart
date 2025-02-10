@@ -1,157 +1,128 @@
+import 'package:bottom_nav/modules/halEmpat/pages/cartPage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:simple_app_android/models/ProductModel.dart';
-import 'package:simple_app_android/modules/browse/pages/browse_page.dart';
-import 'package:simple_app_android/modules/halEmpat/controller/halEmpat_controller.dart';
-import 'package:simple_app_android/modules/settings/pages/settings_page.dart';
+import 'package:bottom_nav/modules/halEmpat/controller/halEmpat_controller.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:bottom_nav/navigation/routes.dart';
 
 class Halempatpage extends GetView<HalempatController> {
+  const Halempatpage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("cheat sheet coba coba widget"),
+        appBar: AppBar(
+      title: Text(
+        "halaman 4 grid",
       ),
-      drawer: Drawer(
-        // Ini bagian Drawer
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: Text('Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-            ),
-            ListTile(
-              title: Text('menuju Browse'),
-              onTap: () {
-                // Lakukan sesuatu saat Item 1 ditekan
-                Get.to(
-                  BrowsePage(),
-                  transition: Transition
-                      .rightToLeft, // Bisa diganti dengan animasi lain seperti fade, downToUp, etc.
-                );
-              },
-            ),
-            ListTile(
-              title: Text('menuju settings'),
-              onTap: () {
-                // Lakukan sesuatu saat Item 2 ditekan
-                // Get.to(
-                //   SettingsPage(),
-                //   arguments: {'id': 1, 'name': 'Product 1'},
-                // );
-              },
-            ),
-          ],
-        ),
-      ),
+    ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text("hello"),
-            Divider(
-              color: Colors.grey,
-              thickness: 2.0,
-            ),
-            //kasih pemisah komponen secara visual
             Container(
-              height: 700,
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Obx(() {
-                //ini obx
-                if (controller.isLoading.value) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                return GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: controller.ProductData.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemBuilder: (context, index) {
-                    final product = controller.ProductData[index];
-                    return Card(
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            product.imagepath ?? 'images/settings.jpg',
-                            height: 125,
-                          ),
-                          Text(product.nama ?? "No Name"),
-                          Text("Rp. ${product.harga ?? 0}"),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text("Add to Cart"),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                );
-              }),
-            ),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                //crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
 
-            // GridView.count(
-            //   shrinkWrap:
-            //       true, // Agar GridView menyesuaikan dengan ukuran konten di dalamnya
-            //   physics:
-            //       NeverScrollableScrollPhysics(), // Membuat GridView tidak scrollable karena sudah ada scroll di SingleChildScrollView
-            //   crossAxisCount: 2,
-            //   children: [
-            //     Container(
-            //       child: Column(
-            //         children: [
-            //           Image(image: Productmodel.image)
-            //         ],
-            //       ),
-            //     )
-            //   ],
-            // ),
-            Stack(
+                  Text("belajar fungsi add, remove list pakai grid",
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,
+                    color: Colors.blue),),
+                  Divider(
+                    color: Colors.grey,
+                    thickness: 2.0,
+                  ),
+                  Obx((){
+                    //kalau kayak gini yang di listen 1 block obs kalau yang pakai => yang dilisten cuma 1 baris statement
+                    return GridView.builder(
+                      //shrikwrap dan physics pencegah error
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                      //grid delegate untuk mengatur jumlah kolom dan spasi antar grid
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2, //ada 2 kolom
+                          crossAxisSpacing: 10,// ini buat ngatur jarak antar kolom
+                          mainAxisSpacing: 10 // untuk mengatur jarak antar baris
+                        ),
+                        //ngatur jumlah itemnya pakai controller biar jumlah item gridnya sama
+                        itemCount: controller.ProductData.length,
+                        //mengatur tampilan tiap item grid 1 per 1
+                        itemBuilder:(context,index){
+                          // return Card(
+                          //   child: Column(
+                          //     children: [
+                          //       //HARUS DITULIS ALTERNATIF NULL karena di objek bisa null,sedangkan disini enggak boleh null
+                          //       Image.asset(controller.ProductData[index].imagepath ?? 'images/settings.jpg'),
+                          //       Text(controller.ProductData[index].nama ?? "tidak ada produk"),
+                          //       Text("Rp . ${controller.ProductData[index].harga??0}")
+                          //     ],
+                          //   ),
+                          // );
+
+                          //pakai cara lebih bersih
+                          final product = controller.ProductData[index];
+                          return Card(
+                            //tambahin color antara pakai container atau dibungkus lagi di dalam container
+                            //trus dikasih boxdecoration
+                            color: Colors.blue[200],
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),//buat kasih padding dalam card harus kasih tambahan bungkus padding
+                              child: Column(
+                                children: [
+                                  //HARUS DITULIS ALTERNATIF NULL karena di objek bisa null,sedangkan disini enggak boleh null
+                                  Image.asset(product.imagepath ?? 'images/settings.jpg',
+                                  height: 80,),
+                                  Text(product.nama ?? "tidak ada produk"),
+                                  Text("Rp. ${product.harga??0}"),
+                                  Expanded(child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.yellow, // Mengatur warna latar belakang button
+                                      ),
+                                      onPressed: (){
+                                        //buat nambahin produk yang dipilih ke dalam cart
+                                        controller: controller.addItemToCart(index);
+                                      }, child: Text("add to cart")))
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+
+                        //item buildernya
+                    );
+                  })
+                ]
+            ),
+            ),
+            // FloatingActionButton(onPressed: (){},
+            //   child: Icon(
+            //     Icons.add_shopping_cart,
+            //     size: 30, // Menambahkan ukuran ikon
+            //   ),),
+            SizedBox(height: 30,),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  width: 200,
-                  height: 200,
-                  color: Colors.blue,
-                ),
-                Positioned(
-                  top:
-                      50, // menempatkan widget teks hello 50 piksel dari atas stack
-                  left: 50, // menempatkan widget 50 piksel dari sisi kiri
-                  child: Text('Hello'),
-                ),
-                Positioned(
-                  bottom: 50, //ini juga sama tapi dari bawah 50 piksel
-                  right: 50, //ini ngatur 50 piksel dari kanan
-                  child: Text('Flutter'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(onPressed: (){
+                    //Get.to(cartPage());
+                    Get.toNamed(Routes.cart);
+                  },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(20),
+                      // Menambah jarak horizontal
+                      backgroundColor: Colors.yellow, // Mengatur warna latar belakang button
+                    ),
+                      child: Icon(
+                        Icons.add_shopping_cart,
+                        size: 30, // Menambahkan ukuran ikon
+                      ),),
                 ),
               ],
-            ),
-            AbsorbPointer(
-              //mencegah widget mendapatkan pointer events seperti taps dan drag
-              //temporarily disabled touch interaction
-              absorbing: true,
-              child: ElevatedButton(onPressed: () {}, child: Text('Button')),
-            ),
-            Hero(
-              tag: 'hero-tag',
-              child: Image(image: AssetImage('images/image1.jpg')),
-            ),
-            //inkwell biar bisa ditap komponen apapun
-            InkWell(
-              //dia bisa muncul pointer di cursornya
-              onTap: () => print("Button Tapped!"),
-              child: Container(color: Colors.yellow, width: 100, height: 100),
-            ),
-            GestureDetector(
-              //ini mirip inkwell tapi enggak muncul pointer
-              onTap: () => print('Tapped!'),
-              child: Container(color: Colors.green, width: 100, height: 100),
-            ),
+            )
           ],
         ),
       ),

@@ -73,9 +73,12 @@ class Header extends GetView<BrowseController> {
                 Icon(Icons.search, color: Colors.white),
                 SizedBox(width: 8),
                 // Use GetX to make the TextField reactive
-                Expanded(
+                Expanded(//biar penuhin ruang tersisa disebelah kanannya si Icon
                   child: TextField(
                     controller: controller.txtController.textEditingController.value, //ini memanggil controllernya text melalui binding
+                    onChanged: (text){//kalau atas sini text, bawahnya juga tulis text
+                      controller.filterDataSearch(text);//Untuk controllernya yang menerima data input dan mengecek apakah input sesuai dengan data json
+                    },
                     decoration: InputDecoration(
                       labelText: 'Enter text',
                     ),

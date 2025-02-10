@@ -2,16 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bottom_nav/navigation/routes.dart';
-import 'package:bottom_nav/modules/browse/binding/browse_binding.dart';
 import 'package:bottom_nav/modules/browse/pages/browse_page.dart';
 import 'package:bottom_nav/modules/settings/pages/settings_page.dart';
-import 'package:bottom_nav/modules/settings/binding/settings_binding.dart';
+import 'package:bottom_nav/modules/halEmpat/pages/halEmpatPage.dart';
 class HomeController extends GetxController {
   static HomeController get to => Get.find();
 
   var currentIndex = 0.obs;
 
-  List<String> dashboardPages = [Routes.browse, Routes.settings];
+  List<String> dashboardPages = [Routes.browse, Routes.settings, Routes.halEmpat];
 
   //buat ganti halaman bottom navigation
   void changePage(int index) {
@@ -25,6 +24,8 @@ class HomeController extends GetxController {
   Widget homePage(int? index) {
     if (index == 1) {
       return SettingsPage();
+    }else if(index ==2){
+      return Halempatpage();
     }
     return BrowsePage(); // Default adalah index 0 (BrowsePage)
   }

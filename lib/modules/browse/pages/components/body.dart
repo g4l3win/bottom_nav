@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:bottom_nav/modules/browse/controller/browse_controller.dart';
 import 'package:bottom_nav/modules/util/ListDataTile.dart';
 
-class Body extends StatelessWidget {
-  final BrowseController controller = Get.put(BrowseController());
+class Body extends GetView<BrowseController> {
+
   Body({Key? key}) : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class Body extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Bagian list',
+                    'Bagian list hehehe',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -34,10 +34,10 @@ class Body extends StatelessWidget {
               Expanded(//pakai list view builder makanya pakai expanded karena enggak tahu panjangnya akan berakhir dimana
                 //JANGAN LUPA KALAU
                 child: Obx(() => ListView.builder(
-                    itemCount: controller.listDataAPI.length,
-                    shrinkWrap: true,
+                    itemCount: controller.filteredDataAPI.length,
+                    shrinkWrap: true,//listTile hanya akan mengikuti lebarnya isi dari list tile
                     itemBuilder: (context, index) {
-                      var item = controller.listDataAPI[index];
+                      var item = controller.filteredDataAPI[index];
                       return ListDataTile(
                         materialname: item.materialname ?? "-",
                         shiftcode: item.shiftcode ?? "-",
