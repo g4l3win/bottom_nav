@@ -66,4 +66,37 @@ class HalempatController extends GetxController {
     }
     return total;
   }
+  //fungsi buat sorting nama alfabet ascending
+  void sortingNama (){
+    //sorting kalau objek katanya
+    ProductData.sort((a, b) => (a.nama ?? '-').compareTo(b.nama ?? '-'));
+    // for ( var material in ProductData){
+    //   print('${material.nama}');
+    // }
+  }
+  void sortingNamaDes (){
+    //sorting kalau objek
+    //fungsi compareTo itu fungsi bawaan dart untuk membandingkan 2 nilai
+    ProductData.sort((a, b) => (b.nama ?? '-').compareTo(a.nama ?? '-'));
+    // for (var material in ProductData){
+    //   print('${material.nama}');
+    // }
+  }
+
+//   print('apple'.compareTo('banana'));  // Output: -1 (karena 'apple' < 'banana')
+//   print('orange'.compareTo('grape'));  // Output: 1 (karena 'orange' > 'grape')
+//   print('mango'.compareTo('mango'));   // Output: 0 (karena sama)
+//
+//   //kalau yang kiri dicompareTo diAlphabet lebih didepan dibalikkin nilainya -1
+//   //kalau yang di dalam argumen compareTo lebih dibelakang dibalikkin nilainya 1
+//   //kalau yang dicompare kiri dan kanan depannya hurufnya sama dibalikkin nilai 0
+  void sortingHargaAs (){
+  ProductData.sort((a, b) => (a.harga ?? 0).compareTo(b.harga ?? 0));
+    for ( var material in ProductData){
+      print('${material.harga}');
+    }
+}
+  void sortingHargaDes(){
+    ProductData.sort((a, b) => (b.harga ?? 0).compareTo(a.harga ?? 0));
+}
 }

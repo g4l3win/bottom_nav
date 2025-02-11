@@ -7,7 +7,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:bottom_nav/navigation/routes.dart';
 
 class Halempatpage extends GetView<HalempatController> {
-  const Halempatpage({Key? key}) : super(key: key);
+  //const Halempatpage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +25,39 @@ class Halempatpage extends GetView<HalempatController> {
               child: Column(
                 //crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-
                   Text("belajar fungsi add, remove list pakai grid",
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,
                     color: Colors.blue),),
                   Divider(
                     color: Colors.grey,
                     thickness: 2.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(onPressed:() {
+                        controller.sortingNama();
+                      },
+                          child: Text("Sort alfabet ascending")),
+                      ElevatedButton(onPressed:() {
+                        controller.sortingNamaDes();
+                      },
+                          child: Text("Sort alfabet decending")),
+                    ],
+                  ),
+                  SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(onPressed:() {
+                        controller.sortingHargaAs();
+                      },
+                          child: Text("Sort harga ascending")),
+                      ElevatedButton(onPressed:() {
+                        controller.sortingHargaDes();
+                      },
+                          child: Text("Sort harga decending")),
+                    ],
                   ),
                   Obx((){
                     //kalau kayak gini yang di listen 1 block obs kalau yang pakai => yang dilisten cuma 1 baris statement
@@ -59,9 +85,7 @@ class Halempatpage extends GetView<HalempatController> {
                           //     ],
                           //   ),
                           // );
-
                           //pakai cara lebih bersih
-
                           return GridItemCard(index: index, controller: controller);
                         }
 
