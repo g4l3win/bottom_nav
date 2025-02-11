@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:bottom_nav/models/ProductModel.dart';
-import 'dart:convert';//untuk conversi data pakai JSONDECODE
+import 'dart:convert'; //untuk conversi data pakai JSONDECODE
 import 'package:flutter/services.dart';
 
 class HalempatController extends GetxController {
@@ -16,6 +17,7 @@ class HalempatController extends GetxController {
     super.onInit();
     loadProductData(); // Panggil saat controller diinisialisasi
   }
+
   //loadProductData untuk load data produk cobain dari asset data JSON yang masukkin internal
   loadProductData() async {
     try {
@@ -36,6 +38,7 @@ class HalempatController extends GetxController {
     //ambil data statis tanpa simpan ke database
     return await rootBundle.loadString(path);
   }
+
   void onFilterData({required String data}) {
     if (data.isNotEmpty &&
         !data.toLowerCase().contains('error') &&
@@ -48,33 +51,38 @@ class HalempatController extends GetxController {
     }
     print('length ${ProductData.length.toString()}');
   }
+
   //fungsi add item to cart
-  void addItemToCart(int index){
+  void addItemToCart(int index) {
     cartItems.add(ProductData[index]);
     print("sudah masuk ke cart item ${[ProductData[index].nama]}");
   }
+
   //fungsi delete/remove item dari cart
-  void removeItemCart(int index){
+  void removeItemCart(int index) {
     cartItems.removeAt(index);
     print("item ${ProductData[index]}");
   }
+
   //fungsi calculate total belanja
-  double calculateTotal (){
-    double total = 0;
-    for(var material in cartItems){
+  String calculateTotal() {
+    int total = 0;
+    for (var material in cartItems) {
       total += material.harga ?? 0;
     }
-    return total;
+    return addTitik(total);
   }
+
   //fungsi buat sorting nama alfabet ascending
-  void sortingNama (){
+  void sortingNama() {
     //sorting kalau objek katanya
     ProductData.sort((a, b) => (a.nama ?? '-').compareTo(b.nama ?? '-'));
     // for ( var material in ProductData){
     //   print('${material.nama}');
     // }
   }
-  void sortingNamaDes (){
+
+  void sortingNamaDes() {
     //sorting kalau objek
     //fungsi compareTo itu fungsi bawaan dart untuk membandingkan 2 nilai
     ProductData.sort((a, b) => (b.nama ?? '-').compareTo(a.nama ?? '-'));
@@ -90,13 +98,21 @@ class HalempatController extends GetxController {
 //   //kalau yang kiri dicompareTo diAlphabet lebih didepan dibalikkin nilainya -1
 //   //kalau yang di dalam argumen compareTo lebih dibelakang dibalikkin nilainya 1
 //   //kalau yang dicompare kiri dan kanan depannya hurufnya sama dibalikkin nilai 0
-  void sortingHargaAs (){
-  ProductData.sort((a, b) => (a.harga ?? 0).compareTo(b.harga ?? 0));
-    for ( var material in ProductData){
-      print('${material.harga}');
-    }
-}
-  void sortingHargaDes(){
+  void sortingHargaAs() {
+    ProductData.sort((a, b) => (a.harga ?? 0).compareTo(b.harga ?? 0));
+    // for (var material in ProductData) {
+    //   print('${material.harga}');
+    // }
+  }
+
+  void sortingHargaDes() {
     ProductData.sort((a, b) => (b.harga ?? 0).compareTo(a.harga ?? 0));
-}
+  }
+
+//fungsi buat bikin harga ada titiknya tiap 3 angka 0
+  //tipe data yang harus dikembalikan string buat Numberformat
+  String addTitik(int number) {
+    var f = NumberFormat("#,###", "id_ID");
+    return f.format(number) ?? "0";
+ }
 }

@@ -23,7 +23,7 @@ class GridItemCard extends GetView<HalempatController> {
             Image.asset(product.imagepath ?? 'images/settings.jpg',
               height: 80,),
             Text(product.nama ?? "tidak ada produk"),
-            Text("Rp. ${product.harga??0}"),
+            Text("Rp. ${controller.addTitik(product.harga??0)}"),
             Expanded(child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.yellow, // Mengatur warna latar belakang button
