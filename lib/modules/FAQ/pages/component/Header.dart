@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:bottom_nav/modules/FAQ/pages/component/CarouselTile.dart';
 
 class Header extends GetView<FAQController>{
-  const Header({Key? key}) : super(key: key);
+  //const Header({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

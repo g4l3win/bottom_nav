@@ -1,4 +1,5 @@
 import 'package:bottom_nav/modules/halEmpat/pages/component/GridItemCard.dart';
+import 'package:bottom_nav/modules/settings/pages/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,9 +26,24 @@ class Halempatpage extends GetView<HalempatController> {
               child: Column(
                 //crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text("belajar fungsi add, remove list pakai grid",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,
-                    color: Colors.blue),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // InkWell(child: Icon(Icons.arrow_back_ios),
+                      // onTap: (){
+                      //   //Get.back();// enggak jalan karena enggak berada di dalam stack navigasi
+                      //   Get.off(SettingsPage());
+                      // }
+                      //   ,),
+                      Container(
+                        width: 300,
+                        child: Text("belajar fungsi add, remove list pakai grid",
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                              color: Colors.blue),),
+                      ),
+                    ],
+                  ),
+
                   Divider(
                     color: Colors.grey,
                     thickness: 2.0,
@@ -38,11 +54,21 @@ class Halempatpage extends GetView<HalempatController> {
                       ElevatedButton(onPressed:() {
                         controller.sortingNama();
                       },
-                          child: Text("Sort alfabet ascending")),
+                          child: Text("Sort alfabet ascending"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.yellow,
+                          padding: EdgeInsets.all(10)// Mengatur warna latar belakang button
+                        ),
+                      ),
                       ElevatedButton(onPressed:() {
                         controller.sortingNamaDes();
                       },
-                          child: Text("Sort alfabet decending")),
+                          child: Text("Sort alfabet decending"),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.yellow,
+                            padding: EdgeInsets.all(10)// Mengatur warna latar belakang button
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(height: 10,),
@@ -52,11 +78,19 @@ class Halempatpage extends GetView<HalempatController> {
                       ElevatedButton(onPressed:() {
                         controller.sortingHargaAs();
                       },
-                          child: Text("Sort harga ascending")),
+                          child: Text("Sort harga ascending"),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.yellow,
+                            padding: EdgeInsets.all(10)// Mengatur warna latar belakang button
+                        ),),
                       ElevatedButton(onPressed:() {
                         controller.sortingHargaDes();
                       },
-                          child: Text("Sort harga decending")),
+                          child: Text("Sort harga decending"),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.yellow,
+                            padding: EdgeInsets.all(10)// Mengatur warna latar belakang button
+                        ),),
                     ],
                   ),
                   Obx((){

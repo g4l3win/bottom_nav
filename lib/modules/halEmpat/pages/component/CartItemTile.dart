@@ -22,7 +22,7 @@ class CartItemTile extends GetView<HalempatController> {
           child: ListTile(
             leading: Image.asset(item.imagepath ?? 'images/settings.jpg'),
             title: Text(item.nama ?? "kosong"),
-            subtitle: Text("Rp ${item.harga ?? 0}"),
+            subtitle: Text("Rp ${controller.addTitik(item.harga ?? 0)}"),
             trailing: InkWell(
               child: Icon(Icons.delete),
               onTap: () {

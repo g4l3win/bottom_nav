@@ -31,6 +31,19 @@ class GridItemCard extends GetView<HalempatController> {
                 onPressed: (){
                   //buat nambahin produk yang dipilih ke dalam cart
                   controller: controller.addItemToCart(index);
+                  Get.snackbar(
+                    "Sukses", // Judul snackbar
+                    "Item telah ditambahkan ke cart!", // Isi pesan
+                    snackPosition: SnackPosition.BOTTOM, // Posisinya di bawah
+                    backgroundColor: Colors.green, // Warna background
+                    colorText: Colors.white, // Warna teks
+                    borderRadius: 8,
+                    margin: EdgeInsets.all(10),
+                    duration:
+                    Duration(seconds: 2), // Snackbar muncul selama 2 detik
+                    icon: Icon(Icons.check_circle,
+                        color: Colors.white), // Ikon di snackbar
+                  );
                 }, child: Text("add to cart")))
           ],
         ),

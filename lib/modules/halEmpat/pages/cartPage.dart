@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:bottom_nav/modules/halEmpat/controller/halEmpat_controller.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:bottom_nav/modules/halEmpat/pages/component/CartItemTile.dart';
+import 'package:bottom_nav/modules/halEmpat/pages/halEmpatPage.dart';
 
 class cartPage extends GetView<HalempatController> {
   const cartPage({Key? key}) : super(key: key);
@@ -17,6 +18,12 @@ class cartPage extends GetView<HalempatController> {
         padding: EdgeInsets.only(top: 20, left: 20, right: 20),
         child: Column(
           children: [
+            InkWell(child: Icon(Icons.arrow_back_ios),
+            onTap: (){
+              Get.back();// enggak jalan karena enggak berada di dalam stack navigasi
+              //Get.off(Halempatpage());
+            }
+              ,),
             Expanded(
               //pakai list view builder makanya pakai expanded karena enggak tahu panjangnya akan berakhir dimana
               //JANGAN LUPA KALAU
@@ -24,7 +31,6 @@ class cartPage extends GetView<HalempatController> {
                     itemCount: controller.cartItems.length,
                     shrinkWrap:
                         true, //listTile hanya akan mengikuti lebarnya isi dari list tile
-
                     itemBuilder: (context, index) {
                       //var item = controller.cartItems[index];
                       return CartItemTile(controller: controller, index: index);

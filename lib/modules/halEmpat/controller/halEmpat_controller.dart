@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:bottom_nav/models/ProductModel.dart';
 import 'dart:convert'; //untuk conversi data pakai JSONDECODE
-import 'package:flutter/services.dart';
+import 'package:flutter/services.dart'; //untuk pakai rootBundle
 
 class HalempatController extends GetxController {
 //list observable untuk product model
@@ -30,13 +30,18 @@ class HalempatController extends GetxController {
     }
   }
 
+
   //fungsi membaca file JSON dari assets pakai future dan async karena mendapatkan datanya harus menunggu
-  Future<String> loadAsset(String path) async {
+  Future<String>loadAsset(String path) async
+  {
     //rootBunlde adalah bagian package services.dart yang dipakai untuk akses file dalam folder assets/
     //rootBundle bisa baca teks JSON TXT CSV
     //memuat file konfigurasi tanpa HTTP request
     //ambil data statis tanpa simpan ke database
-    return await rootBundle.loadString(path);
+    //rootBundle itu operasi asinkron lebih baik dimasukkan ke fungsi Future
+    return await
+    rootBundle.loadString(path);
+    //referensi stackoverflow rootBundle https://stackoverflow.com/questions/51609421/how-to-use-rootbundle-in-flutter-to-load-images
   }
 
   void onFilterData({required String data}) {

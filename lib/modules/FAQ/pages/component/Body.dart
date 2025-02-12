@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class Body extends GetView<FAQController> {
-  const Body({Key? key}) : super(key: key);
+  //const Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
