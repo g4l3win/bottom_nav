@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 import 'package:bottom_nav/modules/account/controller/account_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,38 +25,48 @@ class Body extends GetView<AccountController> {
         //ini textboxnya
         Textbox(
           label: "Nama Pengguna",
+            ctrl: controller.nameController
+
         ),
         Textbox(
           label: "Email",
+            ctrl: controller.emailController
         ),
         Textbox(
           label: "Tanggal lahir",
+            ctrl: controller.birthdateController
         ),
         Textbox(
           label: "Handphone",
+            ctrl: controller.phoneController
         ),
         Textbox(
           label: "Tinggi",
+            ctrl: controller.heightController
         ),
         Textbox(
           label: "Berat",
+            ctrl:controller.weightController
         ),
         //Row untuk radio button
         Row(
           children: [
             Text("Jenis Kelamin:", style: TextStyle(fontSize: 15),),
             Expanded(
-              child: Obx(() => RadioListTile<Gender>(
+              child: Obx(() => RadioListTile<String>(
                 title: Text("L", style: TextStyle(fontSize: 12),),
-                value: Gender.lakiLaki,
-                groupValue: controller.selectedGender.value,
-                onChanged: (value) => controller.setSelected(value!),
+                value: 'lakiLaki',
+                groupValue: controller.selectedGender.value,//digunakan untuk mengelompokkan beberapa
+                //radiolisttile dalam 1 grup
+                //onChanged: (value) {controller.setSelected(value);} , syntax lain
+                onChanged: (value)=> controller.setSelected(value),
+                //kalau value
               )),
             ),
             Expanded(
-              child: Obx(() => RadioListTile<Gender>(
+              child: Obx(() => RadioListTile<String>(
                 title: Text("P", style: TextStyle(fontSize: 12),),
-                value: Gender.perempuan,
+                value: 'perempuan',
                 groupValue: controller.selectedGender.value,
                 onChanged: (value) => controller.setSelected(value!),
               )),
@@ -68,19 +78,35 @@ class Body extends GetView<AccountController> {
         SizedBox(
           width: double.infinity, //biar selebar parent container
           child: ElevatedButton(
-              onPressed: () => Get.snackbar(
-                    "Sukses", // Judul snackbar
-                    "User baru telah ditambahkan!", // Isi pesan
-                    snackPosition: SnackPosition.BOTTOM, // Posisinya di bawah
-                    backgroundColor: Colors.green, // Warna background
-                    colorText: Colors.white, // Warna teks
-                    borderRadius: 8,
-                    margin: EdgeInsets.all(10),
-                    duration:
-                        Duration(seconds: 2), // Snackbar muncul selama 2 detik
-                    icon: Icon(Icons.check_circle,
-                        color: Colors.white), // Ikon di snackbar
-                  ),
+
+              onPressed: () {
+                if(controller.validateFields()){
+    Get.snackbar(
+    "Sukses", // Judul snackbar
+    "User baru telah ditambahkan!", // Isi pesan
+    snackPosition: SnackPosition.BOTTOM, // Posisinya di bawah
+    backgroundColor: Colors.green, // Warna background
+    colorText: Colors.white, // Warna teks
+    borderRadius: 8,
+    margin: EdgeInsets.all(10),
+    duration:
+    Duration(seconds: 2), // Snackbar muncul selama 2 detik
+    icon: Icon(Icons.check_circle,
+    color: Colors.white), // Ikon di snackbar
+    );
+    }else{
+                  Get.snackbar("Error", "Semua field harus diisi!",
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.red,
+                      colorText: Colors.white,
+                      borderRadius: 8,
+                      margin: EdgeInsets.all(10),
+                      duration: Duration(seconds: 2),
+                      icon: Icon(Icons.error, color: Colors.white));
+                }
+    },
+
+
               child: Text(
                 "Tambah",
                 style: TextStyle(

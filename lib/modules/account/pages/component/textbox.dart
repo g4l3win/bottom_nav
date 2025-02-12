@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 
 class Textbox extends GetView<AccountController> {
   final String label;
-
+  final TextEditingController ctrl;
   const Textbox({Key? key,
-  required this.label}) : super(key: key);
+  required this.label, required this.ctrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,11 @@ class Textbox extends GetView<AccountController> {
           border: Border.all(color: Colors.grey)
       ),
       child: TextField(
+        controller: ctrl,
         //controller: controller.txtController.textEditingController.value,
         decoration: InputDecoration(
         labelText: label,
+
       ),),
     );
   }
