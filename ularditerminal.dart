@@ -37,7 +37,7 @@ void main() {
           stdout.write('.'); // Gambar latar
         }
       }
-      stdout.writeln(); // Pindah ke baris baru setelah satu row selesai
+      stdout.writeln(); // Pindah ke baris baru setelah satu row selesai stdout.writeln( "/n ")
     }
   }
 
