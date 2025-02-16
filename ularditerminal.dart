@@ -12,6 +12,11 @@ void main() {
     [5, 5], // Badan
   ];
 
+ //  print(ular[0][0]); //keluar kiri atas
+ // print(ular[0][1]);//keluar kanan atas
+ // print(ular[1][0]);// keluar kiri bawah
+//  print(ular[1][1]); //keluar kanan bawah
+
   List<int> arah = [0, -1]; // Mulai ke kanan
   bool isMain = true;
   int sumbuX = 10;
@@ -39,6 +44,14 @@ void main() {
   void gerakUlar() {
     // Buat kepala baru berdasarkan arah
     List<int> kepala = [ular.first[0] + arah[0], ular.first[1] + arah[1]];
+
+ //    print(ular[0].first);//luar kiri atas
+ // print(ular[0].last); //keluar kanan atas
+  
+ // print("/n");
+//  kepala = [ular[0].first,
+//            ular[0].last
+ //           ];
 
     // Jika keluar batas, teleportasi ke sisi lain
     if (kepala[0] >= sumbuX) kepala[0] = 0;
