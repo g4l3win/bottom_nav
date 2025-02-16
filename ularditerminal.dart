@@ -53,6 +53,9 @@ void main() {
 //            ular[0].last
  //           ];
 
+//      print(ular.first[0]); //ular dapat indeks ke satu indeks ke 0 sama kayak ular[0].first,
+//  print(ular.first[1]); //dapat data pertama indeks [1,4] tapi karena fisrt[1] jadi diapat data 4 sama kayak ular[0].last
+
     // Jika keluar batas, teleportasi ke sisi lain
     if (kepala[0] >= sumbuX) kepala[0] = 0;
     if (kepala[0] < 0) kepala[0] = sumbuX - 1;
