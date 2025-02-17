@@ -17,7 +17,7 @@ class BrowseController extends GetxController {
   var listDataAPI = <ListData>[].obs; //dapat list data dari API KARENA INI PAKAI .OBS jadinya harus di list tile waktu mau tampilin UI harus pakai Obx juga
   //Menandai data fetching atau tidak
   var isLoading = false.obs;
-
+ var filteredDataAPI = List<ListData>.empty(growable: true).obs;  // Menyimpan data yang sudah difilter
   @override
   void onInit() async{
     super.onInit();
@@ -62,5 +62,37 @@ class BrowseController extends GetxController {
     }
     print('length ${listDataAPI.length.toString()}');
 
+  }
+
+  void filterDataSearch(String input){
+
+
+    filteredDataAPI.clear();
+    // for (int i = 0; i < listDataAPI.length; i++){
+    //   if(listDataAPI[i].materialname!.toLowerCase()
+    //       .contains(input.toLowerCase()) ||
+    //       listDataAPI[i].shiftcode!.toLowerCase()
+    //           .contains(input.toLowerCase())){
+    //     filteredDataAPI.add(listDataAPI[i]);
+    //     log('data yang didapat ${listDataAPI[i].materialname }');
+    //   }
+    // }
+
+    //perulangan for in digunakan untuk melakukan perulangan data list. seluruh elemen listDataApi dimasukkan ke dalam variabel material
+    //saat looping berjalan, variabel material bertindak seperti namaArray[i]
+    for(var material in listDataAPI){
+      //var material itu adalah penulisan singkat dari listDataAPI[i]
+      //jika materialname tidak null , huruf kecil semua, di dalam list data api,
+      //memiliki kata yang cocok dengan input
+      if(material.materialname!.toLowerCase().contains(input.toLowerCase()) ||
+          material.shiftcode!.toLowerCase().contains(input.toLowerCase())){
+        filteredDataAPI.add(material);
+        log('data yang didapat ${material.materialname }');
+      } else if(//kalau inputnya kosong keluar semua data listDataAPI
+      input.isEmpty){
+        //
+        filteredDataAPI=listDataAPI;
+      }
+    }
   }
 }
