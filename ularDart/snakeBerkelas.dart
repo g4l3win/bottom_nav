@@ -64,10 +64,18 @@ class ularr {
     if (kepala[1] < 0) kepala[1] = sumbuY - 1;
 
     // Cek apakah menabrak badan sendiri
-    if (ular.any((pos) => pos[0] == kepala[0] && pos[1] == kepala[1])) {
-      isMain = false;
-      return;
-    }
+    // if (ular.any((pos) => pos[0] == kepala[0] && pos[1] == kepala[1])) {
+    //   isMain = false;
+    //   return;
+    // }
+
+    //cara ngecek pakai for loop sederhana 
+for(int i= 0 ; i<ular.length; i++){
+        if(ular[i][0]==kepala[0]&& ular[i][1] == kepala[1]){
+                isMain = false;
+                return;
+        }
+}
 
     // Masukkan kepala baru
     ular.insert(0, kepala);
