@@ -126,7 +126,7 @@ void main() {
   gambar gambarGame = gambar();
   InputHandler inputKey = InputHandler();
 // Jika bukan web, baru pakai stdin
-  if (!kIsWeb) {
+ // if (!kIsWeb) {
     // Listen untuk menerima input dari keyboard
     stdin.lineMode = false; // Non-line mode biar langsung deteksi tombol
     stdin.echoMode = false; // Non-echo mode biar gak nge-print input
@@ -134,7 +134,7 @@ void main() {
       var key = String.fromCharCode(event.last);
       inputKey.handleInput(key, snake.arah);
     });
-  }
+//  }
   Timer.periodic(Duration(milliseconds: 600), (timer) {
     // print('\x1B[2J\x1B[0;0H');
     gambarGame.drawGame(snake.ular, snake.makanan);
