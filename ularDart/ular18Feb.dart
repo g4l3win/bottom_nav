@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 import 'dart:io';
-import 'package:universal_io/io.dart';
-import 'package:flutter/foundation.dart';
 
 class gambar {
   int sumbuX = 10;
