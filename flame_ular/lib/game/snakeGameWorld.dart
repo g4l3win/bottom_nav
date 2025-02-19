@@ -11,7 +11,9 @@ class snakeGameWorld extends World with HasGameRef<snakeGame>{
   Future<void> onLoad() async {
     gridMap = GridMap(10, 10, gameRef.size.x/10);
     //so the world would linked up to our game
-    ular = Ular(Vector2(0,0));
+    ular = Ular(gridMap);
     add(ular);
   }
 }
+
+//ular = Ular(Vector2(0,0));
