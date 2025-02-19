@@ -1,25 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'navigation/pages.dart';
+import 'package:flame/flame.dart';
+import 'package:flutter/widgets.dart';
+import 'gameApp.dart';
 
 void main() {
-  runApp(GetMaterialApp(
-    //debug show checker mode ada di dalam material app
-    debugShowCheckedModeBanner: false,
-    title: 'state management',
-    //theme data
-    theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),),
-    defaultTransition: Transition.fade,//atur transisi default
-
-
-    initialRoute: AppPages.initial, //ambil dari route '/home'
-    getPages: AppPages.routes,
-  ));
+  WidgetsFlutterBinding.ensureInitialized(); //memanggil jika ada operasi async yang butuh binding flutter
+  Flame.device.fullScreen();///biar full screen jadi immersive
+  Flame.device.setPortrait();// biar kalau auto rotate dia enggak ikut ke rotate landscape
+  runApp(const GameApp());
 }
-
-
-
-
-
 
