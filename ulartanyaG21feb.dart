@@ -6,11 +6,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  runApp(GameWidget(game: SnakeGame()));
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: Stack(
+        children: [
+          GameWidget(game: SnakeGame()),
+          Positioned(
+            bottom: 50,
+            left: 50,
+            child: Column(
+              children: [
+                ElevatedButton(onPressed: () => SnakeGame.snake.changeDirection(LogicalKeyboardKey.arrowUp), child: Text('Up')),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(onPressed: () => SnakeGame.snake.changeDirection(LogicalKeyboardKey.arrowLeft), child: Text('Left')),
+                    SizedBox(width: 50),
+                    ElevatedButton(onPressed: () => SnakeGame.snake.changeDirection(LogicalKeyboardKey.arrowRight), child: Text('Right')),
+                  ],
+                ),
+                ElevatedButton(onPressed: () => SnakeGame.snake.changeDirection(LogicalKeyboardKey.arrowDown), child: Text('Down')),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  ));
 }
 
-class SnakeGame extends FlameGame with KeyboardEvents {
-  late Snake snake;
+class SnakeGame extends FlameGame {
+  static late Snake snake;
   late Food food;
   final int gridSize = 20;
   final double cellSize = 20.0;
@@ -22,14 +48,6 @@ class SnakeGame extends FlameGame with KeyboardEvents {
     add(snake);
     add(food);
     food.spawn(snake.body);
-  }
-
-  @override
-  KeyEventResult onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    if (event is RawKeyDownEvent) {
-      snake.changeDirection(event.logicalKey);
-    }
-    return KeyEventResult.handled;
   }
 }
 
@@ -66,14 +84,12 @@ class Snake extends PositionComponent with HasGameRef<SnakeGame> {
 
   void move() {
     Vector2 newHead = body.first + direction;
-    
-    // Cek tabrakan dengan diri sendiri
+
     if (body.contains(newHead)) {
       gameRef.overlays.add('GameOver');
       return;
     }
-    
-    // Wrap-around jika keluar layar
+
     newHead.x = (newHead.x + gridSize) % gridSize;
     newHead.y = (newHead.y + gridSize) % gridSize;
 
